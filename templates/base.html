@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>shorttalk {% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    <ul>
+      {% for message in messages %}
+        <li>{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}</li>
+      {% endfor %}
+    </ul>
+    <h1>shorttalk</h1>
+    <a href="{% url 'SetEmailView' %}">set email</a> &bull; hello <br />
+    {% block content %}{% endblock content %}
+  </body>
+</html>
