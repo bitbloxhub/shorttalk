@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 
 # Create your views here.
 
@@ -17,6 +17,16 @@ class UserPostView(ListView):
     def get_queryset(self):
         return Post.objects.filter(author = User.objects.filter(id = self.kwargs['id'])[0])
     paginate_by = 50
+
+class NewPostView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    template_name = 'new_post.html'
+    model = Post
+    fields = ['content']
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    success_url = '/'
+    success_message = 'Your post has been created'
 
 class SetEmailView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'set_email.html'
