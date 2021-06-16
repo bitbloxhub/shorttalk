@@ -11,7 +11,7 @@
       {% endfor %}
     </ul>
     <h1>shorttalk</h1>
-    <a href="{% url 'SetEmailView' %}">set email</a> &bull; hello <br />
+    {% if not user.is_authenticated %} <a href="/accounts/login">login</a> {% else %} <a href="/accounts/logout">logout</a> &bull; <a href="{% url 'SetEmailView' %}">set email</a> {% endif %}<br />
     {% block content %}{% endblock content %}
   </body>
 </html>
