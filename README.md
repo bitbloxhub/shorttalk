@@ -3,7 +3,7 @@ write short 50-character posts with shorttalk
 ## Requirements
 to start, you need [python 3.8.5](https://www.python.org/) and [node-foreman](http://strongloop.github.io/node-foreman/)
 ## Running
-first, run `python3.8.5 -m venv env/`, then run `./env/bin/pip install -r requirements.txt`.  
+first, run `python_command -m venv env/`, where python_command is how you run python3.8, then run `./env/bin/pip install -r requirements.txt`.  
 then, when you need to run it, run:  
 ```
 # however you activate your virtualenv
